@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reddit: r/harlem</title>
+<style>
+  :root {
+    --bg: #dae0e6;
+    --card: #fff;
+    --text: #1a1a1b;
+    --muted: #787c7e;
+    --line: #edeff1;
+    --reddit: #ff4500;
+    --blue: #0079d3;
+    --comment-bg: #f8f9fa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    font-size: 14px;
+  }
+  .topbar {
+    height: 52px;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .reddit-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 20px;
+    color: #222;
+    min-width: 145px;
+    text-decoration: none;
+  }
+  .snoo {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--reddit);
+    position: relative;
+  }
+  .snoo:before, .snoo:after {
+    content: ""; position: absolute; top: 10px;
+    width: 5px; height: 5px; background: white; border-radius: 50%;
+  }
+  .snoo:before { left: 8px; }
+  .snoo:after { right: 8px; }
+  .search {
+    flex: 1;
+    max-width: 620px;
+    margin: 0 auto;
+    height: 36px;
+    border-radius: 20px;
+    background: #f6f7f8;
+    border: 1px solid #edeff1;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    color: #878a8c;
+  }
+  .account { margin-left: auto; color: #555; font-size: 13px; }
+
+  .page {
+    max-width: 1120px;
+    margin: 24px auto 60px;
+    display: grid;
+    grid-template-columns: minmax(0, 760px) 300px;
+    gap: 24px;
+    padding: 0 16px;
+  }
+  .community {
+    background: #fff;
+    border-radius: 4px 4px 0 0;
+    border: 1px solid #ccc;
+    overflow: hidden;
+  }
+  .community-banner {
+    height: 90px;
+    background:
+      radial-gradient(circle at 15% 40%, rgba(255,255,255,.2) 0 45px, transparent 46px),
+      linear-gradient(135deg, #2a2350, #5b3f8a 55%, #a07cc9);
+  }
+  .community-info {
+    padding: 14px 18px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .sub-icon {
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: #fff;
+    border: 4px solid #fff;
+    margin-top: -35px;
+    box-shadow: 0 0 0 1px #ccc;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 29px;
+  }
+  .community-name { font-size: 21px; font-weight: 700; }
+  .community-sub { color: var(--muted); margin-top: 3px; }
+  .join {
+    margin-left: auto;
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    background: white;
+    border-radius: 18px;
+    padding: 7px 18px;
+    font-weight: 700;
+  }
+
+  .post {
+    background: var(--card);
+    border: 1px solid #ccc;
+    border-top: 0;
+    padding: 18px 20px 12px;
+  }
+  .post-meta {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 11px;
+  }
+  .post-meta strong { color: #444; }
+  .post-title {
+    font-size: 20px;
+    line-height: 1.35;
+    margin: 0 0 14px;
+  }
+  .post-body {
+    font-size: 15px;
+    line-height: 1.55;
+    white-space: pre-line;
+  }
+  .source {
+    margin-top: 16px;
+    padding: 11px 13px;
+    background: #f6f7f8;
+    border-radius: 4px;
+    color: #555;
+    font-size: 12px;
+    word-break: break-all;
+  }
+  .source a { color: var(--blue); text-decoration: none; }
+  .actions {
+    margin-top: 18px;
+    border-top: 1px solid var(--line);
+    padding-top: 10px;
+    display: flex;
+    gap: 8px;
+    color: #878a8c;
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .action { padding: 7px 9px; border-radius: 3px; }
+  .action:hover { background: #f6f7f8; }
+
+  .comments-header {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: 0;
+    padding: 15px 20px;
+    font-weight: 700;
+    color: #444;
+  }
+  .comments {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: 0;
+    padding: 8px 12px 28px;
+  }
+  .comment {
+    margin: 12px 0 12px 0;
+    padding-left: 15px;
+    border-left: 2px solid #edeff1;
+  }
+  .comment.reply   { margin-left: 28px; }
+  .comment.reply2  { margin-left: 54px; }
+  .comment.reply3  { margin-left: 80px; }
+  .comment.reply4  { margin-left: 106px; }
+  .comment.reply5  { margin-left: 132px; }
+  .comment.reply6  { margin-left: 158px; }
+  .comment.reply7  { margin-left: 184px; }
+  .comment.reply8  { margin-left: 210px; }
+  .comment.reply9  { margin-left: 236px; }
+  .comment.reply10 { margin-left: 262px; }
+  .comment.reply11 { margin-left: 288px; }
+  .comment:hover { border-left-color: #c8c8c8; }
+  .comment-meta {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .comment-meta .user { color: #444; font-weight: 700; }
+  .comment-meta .mod-user { color: #d93a00; font-weight: 700; }
+  .mod-pin { color: #878a8c; font-size: 11px; margin-left: 3px; }
+  .mod-badge { color: #d93a00; font-size: 9px; font-weight: 700; margin-left: 3px; }
+  .comment-meta .op {
+    color: #fff;
+    background: #0079d3;
+    border-radius: 2px;
+    padding: 1px 4px;
+    font-size: 9px;
+    margin-left: 4px;
+    font-weight: 700;
+  }
+  .comment-text {
+    line-height: 1.48;
+    font-size: 14px;
+  }
+  .comment-text em { color: #555; }
+  .comment-actions {
+    color: #878a8c;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 7px;
+    display: flex;
+    gap: 14px;
+  }
+  .sidebar {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: fit-content;
+    overflow: hidden;
+  }
+  .sidebar-head {
+    background: #0079d3;
+    color: white;
+    padding: 15px;
+    font-weight: 700;
+  }
+  .sidebar-body { padding: 15px; color: #555; line-height: 1.5; }
+  .sidebar-row {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .sidebar-row:last-child { border-bottom: 0; }
+  .tiny { font-size: 11px; color: var(--muted); }
+
+  .archive {
+    margin-top: 18px;
+    text-align: center;
+    color: #777;
+    font-size: 12px;
+  }
+  .archive span {
+    display: inline-block;
+    padding: 8px 14px;
+    background: rgba(255,255,255,.6);
+    border-radius: 3px;
+  }
+
+  @media (max-width: 850px) {
+    .page { display: block; max-width: 780px; }
+    .sidebar { display: none; }
+    .topbar { padding: 0 10px; }
+    .reddit-logo { min-width: 110px; font-size: 17px; }
+    .account { display: none; }
+    .post { padding: 15px; }
+    .comment.reply   { margin-left: 18px; }
+    .comment.reply2  { margin-left: 34px; }
+    .comment.reply3  { margin-left: 50px; }
+    .comment.reply4  { margin-left: 66px; }
+    .comment.reply5  { margin-left: 82px; }
+    .comment.reply6  { margin-left: 98px; }
+    .comment.reply7  { margin-left: 114px; }
+    .comment.reply8  { margin-left: 130px; }
+    .comment.reply9  { margin-left: 146px; }
+    .comment.reply10 { margin-left: 162px; }
+    .comment.reply11 { margin-left: 178px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="reddit-logo" href="index.html"><div class="snoo"></div> reddit</a>
+  <div class="search">🔍&nbsp;&nbsp;Search Reddit</div>
+  <div class="account">Log In &nbsp; Sign Up</div>
+</header>
+
+<main class="page">
+  <section>
+    <a class="back-link" href="index.html" style="display:inline-block;margin:0 0 14px;color:var(--blue);text-decoration:none;font-size:13px;font-weight:700;">← Back to the front page</a>
+    <div class="community">
+      <div class="community-banner"></div>
+      <div class="community-info">
+        <div class="sub-icon">🗽</div>
+        <div>
+          <div class="community-name">r/harlem</div>
+          <div class="community-sub">Everything happening uptown. 125th and beyond.</div>
+        </div>
+        <button class="join">Join</button>
+      </div>
+    </div>
+
+    <article class="post">
+      <!-- PLACEHOLDER username: confirm with shiva -->
+      <div class="post-meta"><strong>u/shiva</strong> <span>•</span> 3h ago</div>
+      <!-- PLACEHOLDER title: confirm with shiva -->
+      <h1 class="post-title">today on 125th st</h1>
+
+      <div class="actions">
+        <span class="action">💬 1 Comment</span>
+        <span class="action">↗ Share</span>
+        <span class="action">🏆 Award</span>
+        <span class="action">...</span>
+      </div>
+    </article>
+
+    <div class="comments-header">Top Comments</div>
+
+    <section class="comments">
+
+      <div class="comment">
+        <div class="comment-meta"><span class="user">u/rane</span> • 3h ago</div>
+        <div class="comment-text">🔫</div>
+        <div class="comment-actions">Reply &nbsp; Share &nbsp; Award</div>
+      </div>
+
+      <div class="archive">
+        <span>⚠️ This thread has been archived. No new comments can be posted.</span>
+      </div>
+
+    </section>
+  </section>
+
+  <aside class="sidebar">
+    <div class="sidebar-head">r/harlem</div>
+    <div class="sidebar-body">
+      <div class="sidebar-row">
+        <strong>About Community</strong><br>
+        The uptown subreddit. Street sightings, bodega debates, brunch reviews, and daily dispatches from 125th St.
+      </div>
+      <div class="sidebar-row">
+        <strong>146k</strong> Members<br>
+        <span class="tiny">3.1k online</span>
+      </div>
+      <div class="sidebar-row">
+        <strong>Created Jun 8, 2011</strong>
+      </div>
+      <div class="sidebar-row">
+        <strong>Community rules</strong><br>
+        1. Location posts only<br>
+        2. No reposting the same sighting<br>
+        3. Be a neighbor, not a tourist<br>
+        4. What happens on 125th stays on 125th
+      </div>
+    </div>
+  </aside>
+</main>
+
+</body>
+</html>
