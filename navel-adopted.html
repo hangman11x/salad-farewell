@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navel Adopted | Save the Navel Foundation</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: #0f5c2e;
+    background: radial-gradient(circle at 50% 0%, #1a7a3e, #0f5c2e 70%);
+    color: #1a1a1b;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 34px 16px 60px;
+  }
+  .confirm-head {
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 800;
+    margin: 4px 0 6px;
+    text-shadow: 0 1px 2px rgba(0,0,0,.25);
+  }
+  .confirm-sub {
+    color: #d7f5df;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  .cert {
+    background: #fffdf5;
+    width: 100%;
+    max-width: 560px;
+    border: 3px solid #1a8a3e;
+    border-radius: 6px;
+    padding: 8px;
+    box-shadow: 0 18px 50px rgba(0,0,0,.35);
+  }
+  .cert-inner {
+    border: 1.5px solid #cdb46a;
+    border-radius: 4px;
+    padding: 30px 28px 26px;
+    text-align: center;
+    position: relative;
+  }
+  .cert-foundation {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #1a8a3e;
+  }
+  .cert-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 27px;
+    font-weight: 700;
+    color: #14401f;
+    margin: 8px 0 2px;
+    line-height: 1.2;
+  }
+  .cert-rule {
+    width: 90px; height: 2px; background: #cdb46a;
+    margin: 12px auto 18px;
+  }
+  .cert-preamble { font-size: 13px; color: #555; }
+  .cert-name {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #b8860b;
+    margin: 10px 12px;
+    line-height: 1.25;
+  }
+  .cert-line { font-size: 13px; color: #555; }
+
+  .cert-details {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 22px 0 18px;
+  }
+  .detail {
+    background: #f4f8f0;
+    border: 1px solid #e2ead9;
+    border-radius: 6px;
+    padding: 9px 12px;
+    min-width: 120px;
+  }
+  .detail .label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #8a9a86;
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+  .detail .value {
+    font-size: 13px;
+    font-weight: 700;
+    color: #14401f;
+  }
+  .cert-blessing {
+    font-style: italic;
+    color: #444;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 4px auto 6px;
+    max-width: 400px;
+  }
+
+  .seal { margin: 18px auto 2px; width: 118px; height: 118px; }
+
+  .buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 28px;
+  }
+  .btn {
+    border: 0;
+    border-radius: 24px;
+    padding: 12px 22px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-again { background: #ffd21f; color: #14401f; }
+  .btn-again:hover { background: #ffdc4d; }
+  .btn-back { background: #fff; color: #14401f; border: 1px solid #fff; }
+  .btn-back:hover { background: #eafaef; }
+
+  .fine {
+    color: #bfe6cb;
+    font-size: 11px;
+    text-align: center;
+    margin-top: 22px;
+    max-width: 460px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+  <div class="confirm-head">You have successfully adopted this navel 🎉</div>
+  <div class="confirm-sub">Thank you for your generosity. A certificate has been issued in your name.</div>
+
+  <div class="cert">
+    <div class="cert-inner">
+      <div class="cert-foundation">★ Save the Navel Foundation ★</div>
+      <div class="cert-title">Certificate of Navel Adoption</div>
+      <div class="cert-rule"></div>
+
+      <div class="cert-preamble">This certifies that the navel known as</div>
+      <div class="cert-name" id="navelName">Laddoo Nabhiwalla</div>
+      <div class="cert-line">is now the lawful and beloved ward of one (1) devoted guardian.</div>
+
+      <div class="cert-details">
+        <div class="detail">
+          <div class="label">Adoption ID</div>
+          <div class="value" id="adoptId">NVL-2024-04471</div>
+        </div>
+        <div class="detail">
+          <div class="label">Depth Classification</div>
+          <div class="value" id="depthClass">Certified Innie, Grade A</div>
+        </div>
+        <div class="detail">
+          <div class="label">Date of Adoption</div>
+          <div class="value" id="adoptDate">14 August 2024</div>
+        </div>
+      </div>
+
+      <div class="cert-blessing" id="blessing">This navel is now under your lifelong protection and emotional support.</div>
+
+      <!-- Official seal -->
+      <svg class="seal" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <path id="ringTop" d="M 60,60 m -44,0 a 44,44 0 1,1 88,0" fill="none"/>
+          <path id="ringBot" d="M 60,60 m 44,0 a 44,44 0 1,1 -88,0" fill="none"/>
+        </defs>
+        <circle cx="60" cy="60" r="54" fill="none" stroke="#1a8a3e" stroke-width="2"/>
+        <circle cx="60" cy="60" r="46" fill="none" stroke="#cdb46a" stroke-width="1"/>
+        <circle cx="60" cy="60" r="30" fill="#f4f8f0" stroke="#1a8a3e" stroke-width="1.5"/>
+        <text font-size="8.5" font-weight="700" fill="#1a8a3e" letter-spacing="1.4">
+          <textPath href="#ringTop" startOffset="50%" text-anchor="middle">SAVE THE NAVEL FOUNDATION</textPath>
+        </text>
+        <text font-size="7.5" font-weight="700" fill="#b8860b" letter-spacing="2">
+          <textPath href="#ringBot" startOffset="50%" text-anchor="middle">EST. FOREVER</textPath>
+        </text>
+        <!-- little navel in the middle -->
+        <ellipse cx="60" cy="60" rx="9" ry="13" fill="none" stroke="#b8860b" stroke-width="2"/>
+        <path d="M 60,52 q 5,7 0,15" fill="none" stroke="#b8860b" stroke-width="2" stroke-linecap="round"/>
+        <text x="60" y="88" font-size="6.5" font-weight="700" fill="#1a8a3e" text-anchor="middle" letter-spacing="1">OFFICIAL</text>
+      </svg>
+
+    </div>
+  </div>
+
+  <div class="buttons">
+    <button class="btn btn-again" onclick="rollCertificate()">🔄 Adopt another navel</button>
+    <a class="btn btn-back" href="post-12-promo.html">← Back to post</a>
+  </div>
+
+  <div class="fine">
+    Adoption is symbolic and non-refundable. The Save the Navel Foundation is not a real foundation. No navels were harmed, poked, or inconvenienced in the making of this certificate.
+  </div>
+
+<script>
+  var firstNames = [
+    "Shri Nabhiraj","Rani Gehraiya","Maharaja Gol","Chhotu","Laddoo","Jalebi","Guddi",
+    "Bunty","Pappu","Munna","Baby Innie","Sir Deepak","Lady Nabhi","Sonu","Rinky","Golu",
+    "Bittu","Chintu","Motu","Pinky","Sweetu","Gappu"
+  ];
+  var surnames = [
+    "Nabhiwalla","Gehraiwala","Deepgarh","Andarwala","Baharwala","Gupta","Sharma","Reddy",
+    "Iyer","Chowdhury","Depthani","Kumar","Singh","Doobiwala","Bellywala","Petkar","Golwalkar"
+  ];
+  var depths = [
+    "Certified Innie, Grade A","Deeper than your feelings","Shallow but full of self-respect",
+    "Structurally concerning","Bottomless (under committee review)","Gehri nabhi, gehra pyaar",
+    "Round like a fresh gol gappa","Spiral certified, jalebi class","Outie, and proud of it",
+    "Regulation depth, ISI marked","Handle with two hands"
+  ];
+  var blessings = [
+    "This navel is now under your lifelong protection and emotional support.",
+    "May it never be poked without consent.",
+    "Please feed it laddoos on its birthday.",
+    "You are now responsible for its emotional and structural wellbeing.",
+    "Guard this nabhi as your own. It has seen things.",
+    "In sickness and in lint, till belly do you part.",
+    "May your bond be deeper than the navel itself.",
+    "Blessed by the committee and three separate aunties."
+  ];
+  var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+  function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+  function pad(n,w){ n=String(n); while(n.length<w) n="0"+n; return n; }
+
+  function rollCertificate(){
+    document.getElementById("navelName").textContent = pick(firstNames)+" "+pick(surnames);
+    document.getElementById("depthClass").textContent = pick(depths);
+    document.getElementById("blessing").textContent = pick(blessings);
+    var yr = 2023 + Math.floor(Math.random()*3);
+    document.getElementById("adoptId").textContent = "NVL-"+yr+"-"+pad(Math.floor(Math.random()*100000),5);
+    var day = 1 + Math.floor(Math.random()*28);
+    document.getElementById("adoptDate").textContent = day+" "+pick(months)+" "+yr;
+  }
+
+  rollCertificate();
+</script>
+
+</body>
+</html>
