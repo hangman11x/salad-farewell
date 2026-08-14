@@ -152,16 +152,37 @@
   }
   .source a { color: var(--blue); text-decoration: none; }
   .actions {
-    margin-top: 18px;
+    margin-top: 16px;
     border-top: 1px solid var(--line);
-    padding-top: 10px;
+    padding-top: 8px;
     display: flex;
-    gap: 8px;
+    align-items: center;
+    gap: 4px;
     color: #878a8c;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 13px;
   }
-  .action { padding: 7px 9px; border-radius: 3px; }
+  .actions .post-votes {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    border-radius: 16px;
+  }
+  .actions .post-votes svg {
+    width: 18px; height: 18px;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .actions .post-votes .pscore { min-width: 14px; text-align: center; color: #444; }
+  .action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 11px;
+    border-radius: 16px;
+    cursor: default;
+  }
   .action:hover { background: #f6f7f8; }
 
   .comments-header {
@@ -220,12 +241,34 @@
   .comment-text em { color: #555; }
   .comment-actions {
     color: #878a8c;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
-    margin-top: 7px;
+    margin-top: 8px;
     display: flex;
-    gap: 14px;
+    align-items: center;
+    gap: 0px;
+    user-select: none;
   }
+  .comment-actions .act,
+  .comment-actions .votes {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 7px;
+    border-radius: 15px;
+    cursor: default;
+  }
+  .comment-actions .act:hover,
+  .comment-actions .votes:hover { background: #f2f3f5; }
+  .comment-actions svg {
+    width: 16px; height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .comment-actions .count { min-width: 10px; text-align: center; }
   .sidebar {
     background: #fff;
     border: 1px solid #ccc;
@@ -310,10 +353,10 @@
       <h1 class="post-title">Is it okay to stand in a parking spot to save it?</h1>
 
       <div class="actions">
+        <span class="post-votes"><svg viewBox="0 0 24 24"><path d="M12 3.5 20 11.5 15.5 11.5 15.5 20 8.5 20 8.5 11.5 4 11.5Z"/></svg><span class="pscore">927</span><svg viewBox="0 0 24 24"><path d="M12 20.5 20 12.5 15.5 12.5 15.5 4 8.5 4 8.5 12.5 4 12.5Z"/></svg></span>
         <span class="action">💬 1 Comment</span>
-        <span class="action">↗ Share</span>
         <span class="action">🏆 Award</span>
-        <span class="action">...</span>
+        <span class="action">↗ Share</span>
       </div>
     </article>
 
@@ -324,7 +367,12 @@
       <div class="comment">
         <div class="comment-meta"><span class="user">u/rane</span> • 5h ago</div>
         <div class="comment-text">It’s okay if we do it, not if you do it.</div>
-        <div class="comment-actions">Reply &nbsp; Share &nbsp; Award</div>
+        <div class="comment-actions">
+          <span class="act"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></span>
+          <span class="act"><svg viewBox="0 0 24 24"><polyline points="9 17 4 12 9 7"/><path d="M20 18v-2a4 4 0 0 0-4-4H4"/></svg>Reply</span>
+          <span class="act"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>
+          <span class="votes"><svg viewBox="0 0 24 24"><path d="M12 3.5 20 11.5 15.5 11.5 15.5 20 8.5 20 8.5 11.5 4 11.5Z"/></svg><span class="count">331</span><svg viewBox="0 0 24 24"><path d="M12 20.5 20 12.5 15.5 12.5 15.5 4 8.5 4 8.5 12.5 4 12.5Z"/></svg></span>
+        </div>
       </div>
 
       <div class="archive">
